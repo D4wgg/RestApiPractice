@@ -2,14 +2,14 @@ package ru.dawgg.bookmarket.service.user;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.dawgg.bookmarket.form.UserForm;
+import ru.dawgg.bookmarket.exception.InnerApiException;
+import ru.dawgg.bookmarket.dto.UserDto;
 import ru.dawgg.bookmarket.model.User;
-import ru.dawgg.bookmarket.model.userCharacteristic.Role;
-import ru.dawgg.bookmarket.model.userCharacteristic.State;
+import ru.dawgg.bookmarket.model.usercharacteristic.Role;
+import ru.dawgg.bookmarket.model.usercharacteristic.State;
 import ru.dawgg.bookmarket.repository.UserRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -17,12 +17,12 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
 
-    public void signUp(UserForm userForm) {
+    public void signUp(UserDto userDto) {
         userRepository.save(User.builder()
-                .login(userForm.getLogin())
-                .hashPassword(userForm.getPassword())
-                .name(userForm.getName())
-                .surname(userForm.getSurname())
+                .login(userDto.getLogin())
+                .hashPassword(userDto.getPassword())
+                .name(userDto.getName())
+                .surname(userDto.getSurname())
                 .role(Role.USER)
                 .state(State.ACTIVE)
                 .build());
@@ -33,7 +33,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Optional<User> findOneById(Long id) {
-        return Optional.of(userRepository.findById(id)).orElseThrow(IllegalArgumentException::new);
+    public User findOneById(Long id) {
+        return userRepository.findById(id)
+                .orElseThrow(new InnerApiException(InnerApiException.USER_NOT_FOUND_EXCEPTION));
     }
 }

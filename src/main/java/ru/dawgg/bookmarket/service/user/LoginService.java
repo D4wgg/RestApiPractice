@@ -1,9 +1,9 @@
 package ru.dawgg.bookmarket.service.user;
 
-import ru.dawgg.bookmarket.form.LoginForm;
-import ru.dawgg.bookmarket.transfer.TokenDto;
+import ru.dawgg.bookmarket.dto.LoginDto;
+import ru.dawgg.bookmarket.dto.TokenDto;
 
 public interface LoginService {
 
-    TokenDto login(LoginForm loginForm);
+    TokenDto login(LoginDto loginDto);
 }

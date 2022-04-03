@@ -6,7 +6,6 @@ import ru.dawgg.bookmarket.model.Book;
 import ru.dawgg.bookmarket.repository.BookRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -20,7 +19,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Optional<Book> findOne(Long id) {
-        return Optional.of(repository.findById(id)).orElse(Optional.empty());
+    public Book findOne(Long id) {
+        return repository.findById(id).orElseThrow(IllegalArgumentException::new);
     }
 }

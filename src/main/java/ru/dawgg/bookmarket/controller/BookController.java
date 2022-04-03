@@ -9,22 +9,21 @@ import ru.dawgg.bookmarket.model.Book;
 import ru.dawgg.bookmarket.service.book.BookService;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/v1/book")
+@RequestMapping("/api/v1/books")
 @RequiredArgsConstructor
 public class BookController {
 
     private final BookService service;
 
-    @GetMapping("/show")
+    @GetMapping
     public List<Book> showAllBooks() {
         return service.findAll();
     }
 
-    @GetMapping("/show/{id}")
-    public Optional<Book> showTheBook(@PathVariable("id") Long id) {
-        return Optional.of(service.findOne(id)).orElseThrow(IllegalArgumentException::new);
+    @GetMapping("/{id}")
+    public Book showTheBook(@PathVariable("id") Long id) {
+        return service.findOne(id);
     }
 }

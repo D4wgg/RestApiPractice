@@ -1,16 +1,15 @@
 package ru.dawgg.bookmarket.service.user;
 
-import ru.dawgg.bookmarket.form.UserForm;
+import ru.dawgg.bookmarket.dto.UserDto;
 import ru.dawgg.bookmarket.model.User;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface UserService {
 
-    void signUp(UserForm userForm);
+    void signUp(UserDto userDto);
 
     List<User> findAll();
 
-    Optional<User> findOneById(Long id);
+    User findOneById(Long id);
 }

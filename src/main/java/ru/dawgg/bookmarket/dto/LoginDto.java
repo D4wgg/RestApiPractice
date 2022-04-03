@@ -1,13 +1,12 @@
-package ru.dawgg.bookmarket.form;
+package ru.dawgg.bookmarket.dto;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class UserForm {
+public class LoginDto {
+
     private String login;
     private String password;
-    private String name;
-    private String surname;
 }

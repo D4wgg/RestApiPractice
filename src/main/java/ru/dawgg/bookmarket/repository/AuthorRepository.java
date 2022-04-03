@@ -6,4 +6,5 @@ import ru.dawgg.bookmarket.model.Author;
 
 @Repository
 public interface AuthorRepository extends JpaRepository<Author, Long> {
+//    List<Author> findAuthorByPersonalData(AuthorForm authorForm);
 }
