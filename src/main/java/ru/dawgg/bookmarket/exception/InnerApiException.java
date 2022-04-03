@@ -11,8 +11,7 @@ public class InnerApiException extends RuntimeException implements Supplier<Inne
         super(message);
     }
 
-    public InnerApiException() {
-    }
+    public InnerApiException() {}
 
     @Override
     public InnerApiException get() {
