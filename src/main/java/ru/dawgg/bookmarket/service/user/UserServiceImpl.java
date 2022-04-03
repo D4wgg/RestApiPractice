@@ -11,6 +11,8 @@ import ru.dawgg.bookmarket.repository.UserRepository;
 
 import java.util.List;
 
+import static ru.dawgg.bookmarket.exception.InnerApiException.USER_NOT_FOUND_EXCEPTION;
+
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
@@ -35,6 +37,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findOneById(Long id) {
         return userRepository.findById(id)
-                .orElseThrow(new InnerApiException(InnerApiException.USER_NOT_FOUND_EXCEPTION));
+                .orElseThrow(new InnerApiException(USER_NOT_FOUND_EXCEPTION));
     }
 }
