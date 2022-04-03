@@ -1,4 +1,4 @@
-package ru.dawgg.bookmarket.service.token;
+package ru.dawgg.bookmarket.service.user.token;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
