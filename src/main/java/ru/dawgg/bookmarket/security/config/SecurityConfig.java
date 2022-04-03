@@ -21,18 +21,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                    .antMatchers("/").authenticated()
-                    .antMatchers("/login").permitAll()
-                    .antMatchers("/signUp").permitAll()
-                    .anyRequest().authenticated()
+                .antMatchers("/").authenticated()
+                .antMatchers("/login").permitAll()
+                .antMatchers("/signUp").permitAll()
+                .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                    .loginPage("/login")
-                    .usernameParameter("login")
-                    .defaultSuccessUrl("/")
-                    .permitAll()
+                .loginPage("/login")
+                .usernameParameter("login")
+                .defaultSuccessUrl("/")
+                .permitAll()
                 .and()
-                    .csrf().disable();
+                .csrf().disable();
 
     }
 }

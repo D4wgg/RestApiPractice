@@ -1,7 +1,6 @@
 package ru.dawgg.bookmarket.service.user;
 
 import lombok.RequiredArgsConstructor;
-import lombok.SneakyThrows;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -15,6 +14,8 @@ import ru.dawgg.bookmarket.repository.UserRepository;
 import ru.dawgg.bookmarket.dto.TokenDto;
 
 import java.util.Optional;
+
+import static ru.dawgg.bookmarket.exception.InnerApiException.USER_NOT_FOUND_EXCEPTION;
 
 @Service
 @RequiredArgsConstructor
@@ -42,6 +43,6 @@ public class LoginServiceImpl implements LoginService {
                 return mapper.map(token, TokenDto.class);
             }
         }
-        throw new InnerApiException(InnerApiException.USER_NOT_FOUND_EXCEPTION);
+        throw new InnerApiException(USER_NOT_FOUND_EXCEPTION);
     }
 }
