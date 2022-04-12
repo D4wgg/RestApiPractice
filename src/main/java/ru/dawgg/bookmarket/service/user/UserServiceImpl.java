@@ -11,7 +11,7 @@ import ru.dawgg.bookmarket.repository.UserRepository;
 
 import java.util.List;
 
-import static ru.dawgg.bookmarket.exception.InnerApiException.USER_NOT_FOUND_EXCEPTION;
+import static ru.dawgg.bookmarket.exception.ApiEntityNotFoundException.USER_NOT_FOUND_EXCEPTION;
 
 @Service
 @RequiredArgsConstructor

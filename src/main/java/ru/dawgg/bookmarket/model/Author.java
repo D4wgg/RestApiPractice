@@ -1,5 +1,6 @@
 package ru.dawgg.bookmarket.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -7,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,7 +20,6 @@ import java.util.List;
 
 @Getter
 @Setter
-@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -30,11 +31,16 @@ public class Author {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "surname")
     private String surname;
+
+    @Column(name = "birth_date")
     private LocalDate birthDate;
 
     @OneToMany(mappedBy = "author")
-    @ToString.Exclude
+    @JsonBackReference
     private List<Book> books;
 }
