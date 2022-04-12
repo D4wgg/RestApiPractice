@@ -1,5 +1,7 @@
 package ru.dawgg.bookmarket.model;
 
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -23,7 +25,7 @@ import java.util.Objects;
 
 @Getter
 @Setter
-@ToString
+@ToString(exclude = "author")
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -41,11 +43,12 @@ public class Book {
     @Column(name = "price")
     private BigDecimal price;
 
-    @Column(name = "release-date")
+    @Column(name = "release_date")
     private LocalDate releaseDate;
 
     @ManyToOne
     @JoinColumn(name = "author_id")
+    @JsonManagedReference
     private Author author;
 
     @Override

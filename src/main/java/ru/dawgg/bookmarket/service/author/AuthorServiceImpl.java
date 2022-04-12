@@ -8,7 +8,6 @@ import ru.dawgg.bookmarket.model.Author;
 import ru.dawgg.bookmarket.repository.AuthorRepository;
 
 import static ru.dawgg.bookmarket.exception.ApiEntityNotFoundException.AUTHOR_NOT_FOUND_EXCEPTION;
-
 @Service
 @RequiredArgsConstructor
 public class AuthorServiceImpl implements AuthorService {
@@ -17,7 +16,12 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Override
     public Author findAuthorByPersonalData(AuthorDto authorDto) {
-        return authorRepository.findAuthorByPersonalData(authorDto)
+        return authorRepository
+                .findAuthorByNameAndSurnameAndBirthDate(
+                        authorDto.getName(),
+                        authorDto.getSurname(),
+                        authorDto.getBirthDate()
+                )
                 .orElseThrow(new ApiEntityNotFoundException(AUTHOR_NOT_FOUND_EXCEPTION));
     }
 }

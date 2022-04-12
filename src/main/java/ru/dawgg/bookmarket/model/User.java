@@ -25,7 +25,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "users")
+@Table(name = "site_users")
 public class User {
 
     @Id
@@ -35,7 +35,7 @@ public class User {
     @Column(name = "login")
     private String login;
 
-    @Column(name = "hash-password")
+    @Column(name = "hash_password")
     private String hashPassword;
 
     @Column(name = "name")

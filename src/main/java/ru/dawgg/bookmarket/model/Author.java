@@ -1,5 +1,6 @@
 package ru.dawgg.bookmarket.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -19,7 +20,6 @@ import java.util.List;
 
 @Getter
 @Setter
-@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -37,10 +37,10 @@ public class Author {
     @Column(name = "surname")
     private String surname;
 
-    @Column(name = "birth-date")
+    @Column(name = "birth_date")
     private LocalDate birthDate;
 
     @OneToMany(mappedBy = "author")
-    @ToString.Exclude
+    @JsonBackReference
     private List<Book> books;
 }
