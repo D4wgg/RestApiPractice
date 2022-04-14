@@ -1,6 +1,7 @@
 package ru.dawgg.bookmarket.service.user;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.dawgg.bookmarket.exception.InnerApiException;
 import ru.dawgg.bookmarket.dto.UserDto;
@@ -18,11 +19,12 @@ import static ru.dawgg.bookmarket.exception.ApiEntityNotFoundException.USER_NOT_
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
     public void signUp(UserDto userDto) {
         userRepository.save(User.builder()
                 .login(userDto.getLogin())
-                .hashPassword(userDto.getPassword())
+                .hashPassword(passwordEncoder.encode(userDto.getPassword()))
                 .name(userDto.getName())
                 .surname(userDto.getSurname())
                 .role(Role.USER)

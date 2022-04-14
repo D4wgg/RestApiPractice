@@ -1,6 +1,7 @@
 package ru.dawgg.bookmarket.security.config;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -19,18 +20,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/").authenticated()
-                .antMatchers("/login").permitAll()
-                .antMatchers("/signUp").permitAll()
-                .antMatchers("/api/v1/books/**").permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .formLogin()
-                .loginPage("/login")
-                .usernameParameter("login")
-                .defaultSuccessUrl("/")
-                .permitAll()
-                .and()
-                  .csrf().disable();
+                    .antMatchers("/").permitAll()
+                    .antMatchers("/login").permitAll()
+                    .antMatchers("/signUp").permitAll()
+                    .antMatchers("/api/v1/books/**").permitAll()
+                    .antMatchers("/swagger-ui/**", "/javainuse-openapi/**", "/v3/api-docs/**").permitAll()
+                    .anyRequest().authenticated()
+                    .and()
+                .csrf().disable();
+    }
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+
     }
 }
